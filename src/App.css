@@ -1,38 +1,249 @@
-.App {
-  text-align: center;
+:root {
+	--blue: #5050fa;
+	--red: #ff2a2a;
+	--grey: #a3a3a3;
+	--white: #fbfbf9;
+	--lt-blue: #b6d3ff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html,
+body,
+#root {
+	height: 100%;
+	width: 100%;
+	user-select: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.tmp-mb-3 {
+	margin-bottom: 15px;
+}
+.tmp-mb-5 {
+	margin-bottom: 25px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.tmp-card {
+	border-radius: 2px;
 }
 
-.App-link {
-  color: #61dafb;
+.container-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+.tmp-input,
+.tmp-btn {
+	position: relative;
+	margin: 12px;
+}
+.label-focused {
+	top: -8px !important;
+	left: 12px !important;
+	/* color: var(--grey) !important; */
+	font-size: 9px !important;
+	padding: 2px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes ripple {
+	to {
+		opacity: 0;
+		transform: scale(2);
+	}
+}
+
+.ripple-animation {
+	animation-name: ripple;
+	animation-duration: 1000ms;
+}
+
+.ripple-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.ripple {
+	transform: scale(0);
+	background-color: var(--blue);
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	border-radius: 100%;
+	width: 200%;
+	height: 200%;
+	cursor: pointer;
+	z-index: -1;
+	opacity: 0.1;
+}
+.tmp-input > .tmp-floating-label {
+	position: absolute;
+	top: 8px;
+	left: 10px;
+	color: var(--grey);
+	transition: top 0.2s, font-size 0.2s, color 0.2s;
+	user-select: none;
+	background-color: var(--white);
+}
+.tmp-input > .tmp-label {
+	padding: 2px;
+}
+
+.tmp-heading {
+	font-size: 35px;
+	font-weight: 600;
+	padding: 20px;
+}
+
+.tmp-normal {
+	font-size: 20px;
+	font-weight: 400;
+	padding: 5px;
+}
+
+.login-container {
+	background-image: url("../public/imgs/mars.jpg");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+.login-container > .tmp-card {
+	opacity: 0.91;
+}
+.tmp-side {
+	height: 100%;
+}
+.tmp-side-header {
+	text-align: center;
+	/* font-size: 30px; */
+	padding: 30px;
+}
+.tmp-side-body {
+	list-style: none;
+	padding-left: 0;
+	background-color: inherit;
+}
+.tmp-side-body > li {
+	position: relative;
+	box-shadow: 0px 8px 9px -5px black;
+	cursor: pointer;
+}
+.tmp-side-body > li > a {
+	width: 100%;
+	height: 50px;
+	text-decoration: none;
+	color: inherit;
+	padding-left: 15px;
+	display: flex;
+	align-items: center;
+}
+
+.y-axis {
+	display: flex;
+	flex-direction: column;
+	padding-right: 10px;
+	justify-content: space-between;
+	margin-bottom: 15px;
+}
+.y-axis > div {
+	/* padding-bottom: 10px; */
+	text-align: right;
+}
+
+.x-axis {
+	display: flex;
+}
+
+/*Tags CSS */
+
+input:not(
+		input[type="checkbox"],
+		input[type="range"],
+		input[type="radio"],
+		input[type="submit"],
+		input[type="button"]
+	) {
+	width: calc(100% - 24px);
+}
+input:not(input[type="checkbox"], input[type="range"], input[type="radio"]),
+button {
+	padding: 12px;
+	padding-left: 10px !important;
+}
+
+input[type="file"] {
+	border-radius: 5px;
+}
+input[type="file"]::-webkit-file-upload-button {
+	display: none;
+}
+input[type="file"]::before {
+	padding: 5px;
+	display: inline-block;
+	content: "Please Select: ";
+}
+input[type="file"]:hover {
+	cursor: pointer;
+	box-shadow: 1px 1px 5px 1px var(--blue);
+}
+input[type="range"] {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 100%;
+	height: 0;
+	border-radius: 10px;
+	-webkit-transition: 0.2s;
+	transition: opacity 0.2s;
+}
+input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	outline: none;
+	background: var(--blue);
+	cursor: pointer;
+}
+input[type="range"]:focus {
+	outline: none;
+	box-shadow: 0px 0px 2px 0px var(--blue);
+}
+input[type="range"]::-moz-range-thumb {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: var(--blue);
+	cursor: pointer;
+}
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+button {
+	width: 100%;
+}
+input,
+button {
+	border: 1px solid var(--blue);
+	background-color: inherit;
+	font-size: 15px;
+}
+input:focus,
+button:focus {
+	outline-color: var(--blue);
+}
+
+button {
+	color: var(--blue);
+	border-radius: 10px;
+}
+
+button:hover {
+	/* font-weight: 600; */
+	cursor: pointer;
+	background-color: var(--lt-blue);
 }
